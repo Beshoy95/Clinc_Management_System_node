@@ -9,6 +9,7 @@ const path = require('path');
 require('dotenv').config();
 
 /*------------------------------- Routers-------------------------------*/
+const employeeRouter = require("./Routers/employeeRouters");
 
 /*------------------------------- Images-------------------------------*/
 //image variable
@@ -77,13 +78,15 @@ app.use(body_parser.json());
 app.use(body_parser.urlencoded({extended:false})); 
 
 /*------------------------------- RoutersMiddleWares-------------------------------*/
+app.use(employeeRouter)
 
-
+/*------------------------------- NotFoundMiddleWares-------------------------------*/
 //Not found MW
 app.use((request, response) => {
   response.status(404).json({ data: 'Not Fond' });
 });
 
+/*------------------------------- ErrorMiddleWares-------------------------------*/
 //Error MW
 app.use((error, request, response, next) => {
   //JS  code function.length
